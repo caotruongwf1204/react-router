@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 50px 20px;
+}
+.logo-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}

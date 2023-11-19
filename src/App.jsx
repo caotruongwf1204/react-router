@@ -11,6 +11,8 @@ import Policy from "./routes/policy";
 import Root from "./routes/root";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import './App.css';
+
 const router = createBrowserRouter([
   {
     path: "/",
