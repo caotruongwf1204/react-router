@@ -7,3 +7,13 @@
 .product-detail .product-info {
     width: calc(50% - 20px);
 }
+.product-quantity {
+    width: 80px;
+}
+.button-add-to-cart {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+}

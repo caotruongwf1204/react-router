@@ -1,5 +1,6 @@
 export const CART = {
   ADD: "cart/add",
+  REMOVE: "cart/remove",
 };
 
 export const cartReducer = (state, action) => {
@@ -23,6 +24,17 @@ export const cartReducer = (state, action) => {
           items: [...state.items, action.payload],
         };
       }
+    }
+
+    case CART.REMOVE: {
+      const updatedItems = state.items.filter(
+        (item) => item.id !== action.payload.itemId
+      );
+
+      return {
+        ...state,
+        items: updatedItems,
+      };
     }
 
     default: {

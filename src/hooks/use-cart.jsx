@@ -5,16 +5,20 @@ import { CART } from "../reducers/cart-reducer";
 export const useCart = () => {
   const [state, dispatch] = useContext(CartContext);
 
-  const addToCart = ({ id, quantity = 1 }) => {
-    dispatch({ type: CART.ADD, payload: { id, quantity } });
+  const addToCart = ({ id, title, thumbnail, price, quantity = 1 }) => {
+    dispatch({
+      type: CART.ADD,
+      payload: { id, title, thumbnail, price, quantity },
+    });
+  };
+  const removeFromCart = (itemId) => {
+    dispatch({
+      type: CART.REMOVE,
+      payload: { itemId },
+    });
   };
 
   const totalItem = state.items.length;
-
-  const getItem = (id) => {
-    const cartItem = state.items.find((item) => item.id === id);
-    return cartItem ? cartItem.product : null;
-  };
 
   // map id => product
 
@@ -22,6 +26,6 @@ export const useCart = () => {
     ...state,
     totalItem,
     onAdd: addToCart,
-    getItem,
+    onRemove: removeFromCart,
   };
 };

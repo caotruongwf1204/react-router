@@ -1,0 +1,73 @@
+.checkout-item {
+   margin: 10px 0;
+}
+
+.payment-info {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .payment-heading {
+    color: #333;
+  }
+  
+  .form-box {
+    margin-top: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .expires {
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .card-experation {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .expiration-year {
+    margin-left: 10px;
+  }
+  
+  .cvv-info {
+    display: block;
+    margin-top: 5px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .footer-text {
+    margin-top: 20px;
+    color: #555;
+  }
+  
+  .card-logo {
+    margin-right: 5px;
+  }
+  
+  .fa-lock {
+    margin-right: 5px;
+  }
+  

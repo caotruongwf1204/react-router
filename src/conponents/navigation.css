@@ -10,3 +10,14 @@
     font-size: 18px;
     margin-left: 40px;
 }
+.link-total-item {
+    position: relative;
+}
+.total-item {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 5px;
+    color: black;
+}

@@ -12,6 +12,7 @@ import Root from "./routes/root";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import './App.css';
 import CartProvider from "./providers/cart-provider";
+import CheckOut from "./routes/checkout";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/policy", element: <Policy></Policy> },
       { path: "/collection", element: <Collection></Collection> },
       { path: "products/:id", element: <ProductDetail></ProductDetail> },
+      {path: "/checkout", element: <CheckOut></CheckOut>}
     ],
   },
 ]);

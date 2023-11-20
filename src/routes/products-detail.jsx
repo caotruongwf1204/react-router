@@ -41,7 +41,15 @@ export default function ProductDetail() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAdd({ id: product.id, quantity });
+    onAdd({
+      id: product.id,
+      title: product.title,
+      thumbnail: product.images[0],
+      price: round(
+        product.price - (product.price * product.discountPercentage) / 100
+      ),
+      quantity,
+    });
   };
 
   const handleChange = (e) => {
