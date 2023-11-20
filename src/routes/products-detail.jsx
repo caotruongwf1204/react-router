@@ -1,9 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
+import ReactStart from "react-rating-stars-component";
+import { useState } from "react";
+import { useCart } from "../hooks/use-cart"
+import './product-detail.css'
+
+
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { onAdd } = useCart();
+  const [quantity, setQuantity] = useState(1);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["product", id],
@@ -23,19 +33,61 @@ export default function ProductDetail() {
     }
   }
   const product = data?.data;
+
+  const round = (price) => {
+    return price.toFixed(2);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onAdd({ id: product.id, quantity });
+  };
+
+  const handleChange = (e) => {
+    setQuantity(+e.target.value);
+  };
+
   return (
     <main>
-      <h1>Product Detail page</h1>
-
       <div className="product-detail">
-        <img className="product-detail-img" src={product.thumbnail} alt="" />
-        <h1>{product.title}</h1>
-        <span>${product.price}</span>
+        <div className="product-images">
+          <AwesomeSlider bullets={false}>
+            {product.images.map((image) => (
+              <div key={image} className="product-image">
+                <img src={image} alt={product.title} />
+              </div>
+            ))}
+          </AwesomeSlider>
+        </div>
 
-        <form className="product-form">
+        <div className="product-info">
+          <h1 className="product-title">{product.title}</h1>
+          <div className="product-description">{product.description}</div>
+          <div className="product-rating">
+            <ReactStart value={product.rating} />
+            <span className="rating-value">{product.rating}</span>
+          </div>
+          <div className="product-price">
+            <span className="sale-price">
+              $
+              {round(
+                product.price -
+                  (product.price * product.discountPercentage) / 100
+              )}
+            </span>
+            <span className="origin-price">${product.price}</span>
+          </div>
+
+          <form className="product-form" onSubmit={handleSubmit}>
             <div className="form-field">
               <label htmlFor="product-quantity">Quantity</label>
-              <select className="product-quantity" id="product-quantity">
+              <select
+                className="product-quantity"
+                id="product-quantity"
+                value={quantity}
+                onChange={handleChange}
+              >
                 {Array(product.stock)
                   .fill(null)
                   .map((_, i) => (
@@ -48,7 +100,7 @@ export default function ProductDetail() {
               <button className="button-add-to-cart">Add to cart</button>
             </div>
           </form>
-          
+        </div>
       </div>
     </main>
   );

@@ -11,11 +11,17 @@ export const useCart = () => {
 
   const totalItem = state.items.length;
 
+  const getItem = (id) => {
+    const cartItem = state.items.find((item) => item.id === id);
+    return cartItem ? cartItem.product : null;
+  };
+
   // map id => product
 
   return {
     ...state,
     totalItem,
     onAdd: addToCart,
+    getItem,
   };
 };

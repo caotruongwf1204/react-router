@@ -10,8 +10,8 @@ import ProductDetail from "./routes/products-detail";
 import Policy from "./routes/policy";
 import Root from "./routes/root";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import './App.css';
+import CartProvider from "./providers/cart-provider";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +35,9 @@ const client = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={client}>
+      <CartProvider>
       <RouterProvider router={router} />
+      </CartProvider>
     </QueryClientProvider>
   );
 }
