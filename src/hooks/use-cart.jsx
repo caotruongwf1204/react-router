@@ -1,31 +1,46 @@
 import { useContext } from "react";
 import { CartContext } from "../providers/cart-provider";
 import { CART } from "../reducers/cart-reducer";
+import { toast } from "react-toastify";
 
 export const useCart = () => {
   const [state, dispatch] = useContext(CartContext);
 
-  const addToCart = ({ id, title, thumbnail, price, quantity = 1 }) => {
-    dispatch({
-      type: CART.ADD,
-      payload: { id, title, thumbnail, price, quantity },
-    });
+  const addToCart = ({ product, quantity = 1 }) => {
+    dispatch({ type: CART.ADD_ITEM, payload: { product, quantity } });
+    toast.success("The product was successfully added to the cart");
   };
-  const removeFromCart = (itemId) => {
-    dispatch({
-      type: CART.REMOVE,
-      payload: { itemId },
-    });
+
+  const changeQuantity = ({ id, quantity }) => {
+    dispatch({ type: CART.CHANGE_QUANTITY, payload: { id, quantity } });
+  };
+
+  const removeItem = ({ id }) => {
+    dispatch({ type: CART.REMOVE_ITEM, payload: { id } });
   };
 
   const totalItem = state.items.length;
 
-  // map id => product
+  const totalPrice = state.items.reduce((total, item) => {
+    total += item.quantity * item.product.price;
+
+    return total;
+  }, 0);
+  
+  const totalDiscount = state.items.reduce((total, item) => {
+    total +=
+      ((item.product.price * item.product.discountPercentage) / 100) *
+      item.quantity;
+    return total;
+  }, 0);
 
   return {
     ...state,
     totalItem,
+    totalPrice,
+    totalDiscount,
     onAdd: addToCart,
-    onRemove: removeFromCart,
+    onChange: changeQuantity,
+    onRemove: removeItem,
   };
 };

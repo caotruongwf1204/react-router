@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ReactStars from "react-rating-stars-component";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
-import ReactStart from "react-rating-stars-component";
+import "./product-detail.css";
+import { useCart } from "../hooks/use-cart";
 import { useState } from "react";
-import { useCart } from "../hooks/use-cart"
-import './product-detail.css'
-
-
+import { roundPrice } from "../helpers/round-price";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -19,7 +18,6 @@ export default function ProductDetail() {
     queryKey: ["product", id],
     queryFn: () => axios.get(`https://dummyjson.com/products/${id}`),
   });
-  console.log(data, isLoading, isError, error);
 
   if (isLoading) {
     return <div>Loading product data ...</div>;
@@ -32,24 +30,13 @@ export default function ProductDetail() {
       return <div>Fail to load product data: {error.message}</div>;
     }
   }
-  const product = data?.data;
 
-  const round = (price) => {
-    return price.toFixed(2);
-  };
+  const product = data?.data;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAdd({
-      id: product.id,
-      title: product.title,
-      thumbnail: product.images[0],
-      price: round(
-        product.price - (product.price * product.discountPercentage) / 100
-      ),
-      quantity,
-    });
+    onAdd({ product, quantity });
   };
 
   const handleChange = (e) => {
@@ -73,15 +60,15 @@ export default function ProductDetail() {
           <h1 className="product-title">{product.title}</h1>
           <div className="product-description">{product.description}</div>
           <div className="product-rating">
-            <ReactStart value={product.rating} />
+            <ReactStars value={product.rating} />
             <span className="rating-value">{product.rating}</span>
           </div>
           <div className="product-price">
             <span className="sale-price">
               $
-              {round(
+              {roundPrice(
                 product.price -
-                  (product.price * product.discountPercentage) / 100
+                  (product.price * product.discountPercentage) / 100,
               )}
             </span>
             <span className="origin-price">${product.price}</span>

@@ -1,7 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import "./navigation.css";
-import { LuLogIn } from "react-icons/lu";
-import { SiGnuprivacyguard } from "react-icons/si";
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../hooks/use-cart";
 
@@ -30,10 +28,10 @@ export default function Navigation() {
 
       <div className="use">
         <Link className="link" to={"/login"}>
-          <LuLogIn />
+          Login
         </Link>
         <Link className="link" to={"/signup"}>
-          <SiGnuprivacyguard />
+          Sign up
         </Link>
         <Link className="link link-total-item" to={"/shopping-cart"}>
           <FaShoppingCart />

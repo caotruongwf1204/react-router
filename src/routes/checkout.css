@@ -1,73 +1,84 @@
-.checkout-item {
-   margin: 10px 0;
-}
-
-.payment-info {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .payment-heading {
-    color: #333;
-  }
-  
-  .form-box {
-    margin-top: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-  
-  .expires {
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  .card-experation {
+.checkout-page {
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: space-between;
-  }
-  
-  .expiration-year {
-    margin-left: 10px;
-  }
-  
-  .cvv-info {
-    display: block;
-    margin-top: 5px;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .footer-text {
+    margin-top: 30px;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.checkout-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.customer-form {
+    width: 40%;
+}
+
+.cart-info {
+    width: 40%;
+    margin: 0 40px 0 0;
+}
+
+.cart-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+}
+
+.product-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-item-price {
+    margin-top: 10px;
+}
+
+
+.cart-summary {
     margin-top: 20px;
-    color: #555;
-  }
-  
-  .card-logo {
-    margin-right: 5px;
-  }
-  
-  .fa-lock {
-    margin-right: 5px;
-  }
-  
+}
+
+.cart-total-item,
+.cart-total-price,
+.cart-discount,
+.cart-price {
+    margin-bottom: 10px;
+}
+
+.origin-price {
+    margin-left: 5px;
+}
+
+.btn-primary {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(75, 75, 255);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
